@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="crete">
+<head>
+    <meta charset="UTF-8">
+    <title>Crete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+
+    </script>
+</head>
+<body ng-controller="creteController">
+<form>
+    <label>
+        Remetente:
+        <input type="text" ng-model="remetente.nome"/>
+    </label>
+    <label>
+        CEP:
+        <input type="text" ng-model="remetente.cep"/>
+    </label>
+    <br>
+    <br>
+    <label>
+        Detinatário:
+        <input type="text" ng-model="destinatario.nome"/>
+    </label>
+    <label>
+        CEP:
+        <input type="text" ng-model="destinatario.cep"/>
+    </label>
+</form>
+
+
+</body>
+</html>
