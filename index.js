@@ -1,50 +1,21 @@
+const https = require('https');
 const Joi = require('joi');
 const express = require('express');
 const app = express();
 
 app.use(express.json());
 
-const encomendas = [
-    {
-        id: 1,
-        remetente: {
-            nome: 'Edionay',
-            cep: '68.625.480'
-        },
-        destinatario: {
-            nome: 'Pablo',
-            cep: '74710-190'
-        }
-    },
-    {
-        id: 2,
-        remetente: {
-            nome: 'David',
-            cep: '68.625.480'
-        },
-        destinatario: {
-            nome: 'Pedro',
-            cep: '74710-190'
-        }
-    }
-    ,
-    {
-        id: 2,
-        remetente: {
-            nome: 'Antonio',
-            cep: '68.625.480'
-        },
-        destinatario: {
-            nome: 'Marcelo',
-            cep: '74710-190'
-        }
-    }
-];
+app.get('/', (req, res) => {
 
-app.get('/', (req, res) => res.send('Olá, mundo!!'));
-
-app.get('/api/encomendas', (req, res) => {
-    res.send(encomendas);
+    https.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins=74663-520&destinations=40296000&mode=driving&language=pt-BR&sensor=false', resp => {
+        let body = '';
+        resp.on('data', data => body += data);
+        resp.on('end', () => {
+            let encomenda = JSON.parse(body);
+            console.log(encomenda.destination_addresses);
+            res.send(body)
+        });
+    });
 });
 
 app.get('/api/encomendas/:id', (req, res) => {
