@@ -1,13 +1,25 @@
-const https = require('https');
-const Joi = require('joi');
+const mongojs = require('mongojs');
 const express = require('express');
+const https = require('https');
 const app = express();
 
+const bd = mongojs('crete', ['encomendas']);
+
 app.use(express.json());
+app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
+app.get('/encomendas', function (req, res) {
 
-    https.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins=74663-520&destinations=40296000&mode=driving&language=pt-BR&sensor=false', resp => {
+    console.log(res.body);
+
+    bd.encomendas.find(function(err, docs) {
+        res.json(docs);
+    });
+});
+
+app.get('/encomendas/:remetente/:destinatario', (req, res) => {
+
+    https.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${req.params.remetente}&destinations=${req.params.destinatario}&mode=driving&language=pt-BR&sensor=false`, resp => {
         let body = '';
         resp.on('data', data => body += data);
         resp.on('end', () => {
@@ -18,40 +30,13 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/api/encomendas/:id', (req, res) => {
+app.post('/encomendas', function (req, res) {
 
-    const encomenda = encomendas.find(encomenda => encomenda.id === parseInt(req.params.id));
-    if (!encomenda) res.status(404).send('Encomenda não encontrada!');
-    res.send(encomenda);
-});
+    console.log(res.body);
 
-
-app.post('/api/encomendas', (req, res) => {
-
-    const modelo = {
-        id: Joi.number().required(),
-        remetente: {
-            nome: Joi.string(),
-            cep: Joi.string()
-        },
-        destinatario: {
-            nome: Joi.string(),
-            cep: Joi.string()
-        }
-    };
-
-    const resultado = Joi.validate(req.body, modelo);
-    console.log(resultado);
-
-    if (resultado.error) {
-        res.status(400).send(resultado.error.details[0].message);
-        return;
-    }
-
-    const encomenda = req.body;
-    encomendas.push(encomenda);
-    console.log(encomendas);
-    res.send(encomenda);
+    bd.encomendas.find(function(err, docs) {
+        res.json(docs);
+    });
 });
 
 
