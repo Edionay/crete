@@ -10,7 +10,7 @@
 <body ng-controller="encomendasController">
 
 <div class="container">
-    <h1>CRETE - App</h1>
+    <h1>CRETE - Calculadora de Frete!</h1>
 
     <div class="row">
 
@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div class="col s4" id="resultado">
+                <div class="col s8" id="resultado">
                     <h5>Remetente:</h5>
                     <p>{{encomenda.remetente.endereco}}</p>
                     <h5>Destinatário:</h5>
@@ -41,22 +41,8 @@
 
                 </div>
 
-                <div class="col s4">
-                    <div class="input-field">
-                        <input id="remetente_nome" type="text" class="validate" ng-model="remetente.nome">
-                        <label for="remetente_nome">Remetente</label>
-                    </div>
-
-                    <div class="input-field">
-                        <input id="destinatario_nome" type="text" class="validate" ng-model="destinatario.nome">
-                        <label for="destinatario_nome">Destinatário</label>
-                    </div>
-
-                </div>
-
-
             </div>
-            <input type="submit" class="btn waves-effect waves-light" name="action" ng-click="consultaFrete()">
+            <input type="submit" class="btn waves-effect waves-light" name="action" ng-click="consultaFrete()" value="Consultar">
         </form>
     </div>
 </div>
