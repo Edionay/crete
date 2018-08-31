@@ -1,11 +1,11 @@
-const creteApp = angular.module('creteApp', []);
+const creteApp = angular.module('creteApp', ['ngMask']);
 creteApp.controller('encomendasController', ['$scope', '$http', function($scope, $http) {
 
-    
-    $scope.consultaFrete = function () {
-        // console.log($scope.remetente);
+    $scope.remetente = "";
 
-        $http.get(`/encomendas/${$scope.remetente.cep}/${$scope.destinatario.cep}`).then(function (response) {
+    $scope.consultaFrete = function () {
+
+        $http.get(`/encomendas/${$scope.remetente}/${$scope.destinatario}`).then(function (response) {
             console.log(response.data);
             $scope.encomenda = response.data;
             console.log($scope.encomenda.dataDeEntrega);

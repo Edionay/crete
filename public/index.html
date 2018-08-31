@@ -13,21 +13,22 @@
     <h1>CRETE - App</h1>
 
     <div class="row">
+
         <form class="col s12">
             <div class="row">
 
                 <div class="col s4">
                     <div class="input-field">
-                        <input id="remetente_cep" type="text" class="validate" ng-model="remetente.cep">
+                        <input id="remetente_cep" type="text" class="validate" ng-model="remetente" mask="99999-999">
                         <label for="remetente_cep">CEP</label>
                     </div>
                     <div class="input-field">
-                        <input id="destinatario_cep" type="text" class="validate" ng-model="destinatario.cep">
+                        <input id="destinatario_cep" type="text" class="validate" ng-model="destinatario" mask="99999-999">
                         <label for="destinatario_cep">CEP</label>
                     </div>
                 </div>
 
-                <div class="col s4">
+                <div class="col s4" id="resultado">
                     <h5>Remetente:</h5>
                     <p>{{encomenda.remetente.endereco}}</p>
                     <h5>Destinatário:</h5>
@@ -62,5 +63,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script src="controllers/encomendasController.js"></script>
+<script src="js/ngMask.min.js"></script>
 </body>
 </html>
