@@ -1,12 +1,6 @@
 const creteApp = angular.module('creteApp', []);
 creteApp.controller('encomendasController', ['$scope', '$http', function($scope, $http) {
 
-
-    $http.get('./encomendas').then(function (response) {
-        $scope.encomendas = response.data;
-    }, function (error) {
-
-    });
     
     $scope.consultaFrete = function () {
         // console.log($scope.remetente);

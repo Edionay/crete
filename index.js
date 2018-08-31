@@ -1,21 +1,9 @@
-const mongojs = require('mongojs');
 const express = require('express');
 const https = require('https');
 const app = express();
 
-const bd = mongojs('crete', ['encomendas']);
-
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
-
-app.get('/encomendas', function (req, res) {
-
-    console.log(res.body);
-
-    bd.encomendas.find(function(err, docs) {
-        res.json(docs);
-    });
-});
 
 app.get('/encomendas/:remetente/:destinatario', (req, res) => {
 
@@ -52,15 +40,6 @@ app.get('/encomendas/:remetente/:destinatario', (req, res) => {
 
             res.send(encomenda)
         });
-    });
-});
-
-app.post('/encomendas', function (req, res) {
-
-    console.log(res.body);
-
-    bd.encomendas.find(function(err, docs) {
-        res.json(docs);
     });
 });
 

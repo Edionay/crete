@@ -58,27 +58,6 @@
             <input type="submit" class="btn waves-effect waves-light" name="action" ng-click="consultaFrete()">
         </form>
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Remetente</th>
-                <th>CEP</th>
-                <th>Destinatário</th>
-                <th>CEP</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="encomenda in encomendas">
-                <td>{{encomenda.remetente.nome}}</td>
-                <td>{{encomenda.remetente.cep}}</td>
-                <td>{{encomenda.destinatario.nome}}</td>
-                <td>{{encomenda.destinatario.cep}}</td>
-            </tr>
-
-        </tbody>
-    </table>
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
