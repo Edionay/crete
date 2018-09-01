@@ -11,7 +11,6 @@ app.get('/encomendas/:remetente/:destinatario', (req, res) => {
         let body = '';
         resp.on('data', data => body += data);
         resp.on('end', () => {
-            // JSON.parse(body);
             let resposta = JSON.parse(body);
             let encomenda = {};
             let destinatario = {};
@@ -33,11 +32,6 @@ app.get('/encomendas/:remetente/:destinatario', (req, res) => {
             if (req.params.remetente.substring(0, 1) !== req.params.destinatario.substring(0, 1)) {
                 encomenda.frete = encomenda.frete * 1.3;
             }
-
-            console.log(encomenda);
-            console.log(diasCorridos);
-
-
             res.send(encomenda)
         });
     });
